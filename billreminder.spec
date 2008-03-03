@@ -14,6 +14,7 @@ BuildRequires:	python-devel
 BuildRequires:	pygtk2
 BuildRequires:	python-sqlite2
 BuildRequires:	python-dbus
+BuildRequires:	desktop-file-utils
 Requires:	pygtk2
 Requires:	python-sqlite2
 Requires:	python-dbus
@@ -33,6 +34,14 @@ allow for easy tracking of bills.
 %install
 rm -rf %{buildroot}
 %makeinstall_std
+
+desktop-file-install \
+  --add-category="GTK" \
+  --add-category="Finance" \
+  --remove-category="Application" \
+  --remove-category="Miscellaneous" \
+  --remove-key="Encoding" \
+  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %find_lang %{name}
 
