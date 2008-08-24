@@ -1,8 +1,8 @@
 Summary:	Simple application to remind you to pay your bills
 Name:		billreminder
-Version:	0.3.0
+Version:	0.3.1
 Release:	%{mkrel 1}
-Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://download.gnome.org/sources/billreminder/0.3/%name-%version-1.tar.bz2
 License:	BSD
 Group:		Graphical desktop/GNOME
 URL:		http://billreminder.gnulinuxbrasil.org/
@@ -41,6 +41,7 @@ desktop-file-install \
   --remove-category="Application" \
   --remove-category="Miscellaneous" \
   --remove-key="Encoding" \
+  --remove-key="Version" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %find_lang %{name}
@@ -72,4 +73,3 @@ rm -rf %{buildroot}
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_mandir}/man1/*.1*
 %{_datadir}/pixmaps/%{name}.png
-
