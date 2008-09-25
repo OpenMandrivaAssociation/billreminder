@@ -1,7 +1,7 @@
 Summary:	Simple application to remind you to pay your bills
 Name:		billreminder
 Version:	0.3.1
-Release:	%{mkrel 1}
+Release:	%{mkrel 2}
 Source0:	http://download.gnome.org/sources/billreminder/0.3/%name-%version-1.tar.bz2
 License:	BSD
 Group:		Graphical desktop/GNOME
@@ -43,6 +43,10 @@ desktop-file-install \
   --remove-key="Encoding" \
   --remove-key="Version" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
+
+# Correct 'datadir' path (breaks various stuff including startup, see
+# bug #43775) - AdamW 2008/09
+sed -i -e 's,/usr/local/share,%{_datadir},g' %{buildroot}%{py_puresitedir}/%{name}/lib/sysvars.py
 
 %find_lang %{name}
 
