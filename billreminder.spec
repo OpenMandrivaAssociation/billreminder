@@ -1,8 +1,10 @@
+%define schemas %{name}
+
 Summary:	Simple application to remind you to pay your bills
 Name:		billreminder
-Version:	0.3.1
-Release:	%{mkrel 2}
-Source0:	http://download.gnome.org/sources/billreminder/0.3/%name-%version-1.tar.bz2
+Version:	0.3.2
+Release:	%{mkrel 1}
+Source0:	http://download.gnome.org/sources/billreminder/0.3/%{name}-%{version}.tar.bz2
 License:	BSD
 Group:		Graphical desktop/GNOME
 URL:		http://billreminder.gnulinuxbrasil.org/
@@ -28,7 +30,7 @@ allow for easy tracking of bills.
 %setup -q
 
 %build
-%configure2_5x
+%configure2_5x --disable-schemas-install
 %make
 
 %install
@@ -44,18 +46,17 @@ desktop-file-install \
   --remove-key="Version" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
-# Correct 'datadir' path (breaks various stuff including startup, see
-# bug #43775) - AdamW 2008/09
-sed -i -e 's,/usr/local/share,%{_datadir},g' %{buildroot}%{py_puresitedir}/%{name}/lib/sysvars.py
-
 %find_lang %{name}
 
 %if %mdkversion < 200900
 %post
 %{update_icon_cache hicolor}
 %{update_menus}
-%endif
-%if %mdkversion < 200900
+%post_install_gconf_schemas %{schemas}
+
+%preun
+%preun_uninstall_gconf_schemas %{schemas}
+
 %postun
 %{clean_icon_cache hicolor}
 %{clean_menus}
@@ -67,6 +68,7 @@ rm -rf %{buildroot}
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc AUTHORS NEWS README TODO
+%{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_bindir}/%{name}
 %{_bindir}/%{name}d
 %{_sysconfdir}/xdg/autostart/%{name}d.desktop
