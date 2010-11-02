@@ -3,7 +3,7 @@
 Summary:	Simple application to remind you to pay your bills
 Name:		billreminder
 Version:	0.3.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 Source0:	http://download.gnome.org/sources/billreminder/0.3/%{name}-%{version}.tar.bz2
 License:	BSD
 Group:		Graphical desktop/GNOME
