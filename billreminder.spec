@@ -1,7 +1,7 @@
 Summary:	Simple application to remind you to pay your bills
 Name:		billreminder
 Version:	0.4.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 Source0:	http://download.gnome.org/sources/billreminder/0.3/%{name}-%{version}.tar.bz2
 License:	GPLv3
 Group:		Graphical desktop/GNOME
@@ -19,6 +19,7 @@ Requires:	pygtk2
 Requires:	python-sqlite2
 Requires:	python-dbus
 Requires:	python-imaging
+Requires:	python-sqlalchemy
 
 %description
 BillReminder is a small and quick accounting application designed to
