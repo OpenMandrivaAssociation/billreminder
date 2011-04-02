@@ -1,15 +1,13 @@
-%define schemas %{name}
-
 Summary:	Simple application to remind you to pay your bills
 Name:		billreminder
-Version:	0.3.2
-Release:	%mkrel 4
+Version:	0.4.0
+Release:	%mkrel 1
 Source0:	http://download.gnome.org/sources/billreminder/0.3/%{name}-%{version}.tar.bz2
-License:	BSD
+License:	GPLv3
 Group:		Graphical desktop/GNOME
 URL:		http://billreminder.gnulinuxbrasil.org/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch:	noarch
+BuildRequires:	GConf2
 BuildRequires:	intltool
 BuildRequires:	perl-XML-Parser
 BuildRequires:	python-devel
@@ -48,19 +46,8 @@ desktop-file-install \
 
 %find_lang %{name}
 
-%if %mdkversion < 200900
-%post
-%{update_icon_cache hicolor}
-%{update_menus}
-%post_install_gconf_schemas %{schemas}
-
 %preun
-%preun_uninstall_gconf_schemas %{schemas}
-
-%postun
-%{clean_icon_cache hicolor}
-%{clean_menus}
-%endif
+%preun_uninstall_gconf_schemas %{name}
 
 %clean
 rm -rf %{buildroot}
@@ -77,5 +64,5 @@ rm -rf %{buildroot}
 %{_datadir}/%{name}
 %{_datadir}/dbus-1/services/%{name}.service
 %{_iconsdir}/hicolor/*/apps/%{name}.*
-%{_mandir}/man1/*.1*
+%{_mandir}/man1/%{name}*
 %{_datadir}/pixmaps/%{name}.png
