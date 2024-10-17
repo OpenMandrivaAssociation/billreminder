@@ -5,7 +5,7 @@ Release:	4
 Source0:	http://download.gnome.org/sources/billreminder/0.3/%{name}-%{version}.tar.bz2
 License:	GPLv3
 Group:		Graphical desktop/GNOME
-URL:		http://billreminder.gnulinuxbrasil.org/
+URL:		https://billreminder.gnulinuxbrasil.org/
 BuildArch:	noarch
 BuildRequires:	GConf2
 BuildRequires:	intltool
