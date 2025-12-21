@@ -7,6 +7,11 @@ License:	GPLv3
 Group:		Graphical desktop/GNOME
 URL:		https://billreminder.gnulinuxbrasil.org/
 BuildArch:	noarch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	GConf2
 BuildRequires:	intltool
 BuildRequires:	perl-XML-Parser
